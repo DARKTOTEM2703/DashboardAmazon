@@ -160,12 +160,33 @@ document.addEventListener("DOMContentLoaded", function () {
             row.style.opacity = "0";
             row.style.transform = "translateX(20px)";
 
-            setTimeout(() => {
-              // Aquí implementarías la lógica para eliminar el producto
-              alert(`Producto ${id} eliminado`);
-              // Actualizar la tabla
-              cargarProductos();
-            }, 500);
+            // Usar AJAX para eliminar el producto
+            const formData = new FormData();
+            formData.append("id", id);
+
+            fetch("../dashboard/eliminar_producto.php", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  setTimeout(() => {
+                    // Actualizar la tabla
+                    cargarProductos();
+                  }, 500);
+                } else {
+                  alert("Error: " + data.message);
+                  row.style.opacity = "1";
+                  row.style.transform = "translateX(0)";
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert("Error al eliminar el producto");
+                row.style.opacity = "1";
+                row.style.transform = "translateX(0)";
+              });
           }
         });
       });

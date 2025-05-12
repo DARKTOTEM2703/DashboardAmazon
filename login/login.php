@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_close($update);
 
                 mysqli_close($conexion);
-                header('Location: ../dashboard.php');
+                header('Location: ../dashboard/dashboard.php');
                 exit();
             } else {
                 $error = 'Usuario o contraseña incorrectos';
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Amazon Dashboard</title>
-    <link rel="stylesheet" href="../css/login-styles.css">
+    <link rel="stylesheet" href="../css/pages/login-styles.css">
 </head>
 
 <body>

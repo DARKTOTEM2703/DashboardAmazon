@@ -1,4 +1,5 @@
 <?php
+// filepath: c:\xampp\htdocs\DashboardAmazon\dashboard\productos.php
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
@@ -7,42 +8,89 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Incluir conexión a la base de datos
+require_once '../includes/db_connection.php';
+
 // Procesar el formulario cuando se envía
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Aquí iría el código para procesar el formulario
-    // Conectar a la base de datos
-    // Guardar la información del producto
-    // Subir la imagen, etc.
+    $conn = conectarDB();
+
+    $nombre = limpiarDato($_POST['nombre'], $conn);
+    $descripcion = limpiarDato($_POST['descripcion'], $conn);
+    $precio = floatval($_POST['precio']);
+
+    // Inicializar variables para mensajes
+    $mensaje_exito = '';
+    $mensaje_error = '';
+
+    // Manejo de la foto
+    $foto = 'default.jpg'; // Valor predeterminado
+
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../reference/img/productos/';
+
+        // Crear el directorio si no existe
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $fileName = basename($_FILES['foto']['name']);
+        $targetFilePath = $uploadDir . $fileName;
+
+        // Verificar que sea una imagen
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
+
+        if (in_array(strtolower($fileType), $allowTypes)) {
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $targetFilePath)) {
+                $foto = $fileName;
+            } else {
+                $mensaje_error = "Error al subir la imagen. Inténtelo de nuevo.";
+            }
+        } else {
+            $mensaje_error = "Solo se permiten archivos de imagen JPG, JPEG, PNG y GIF.";
+        }
+    }
+
+    // Si no hay error, insertar en la base de datos
+    if (empty($mensaje_error)) {
+        // Insertar en la base de datos
+        $query = "INSERT INTO productos (nombre, descripcion, precio, imagen) VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "ssds", $nombre, $descripcion, $precio, $foto);
+
+        if (mysqli_stmt_execute($stmt)) {
+            // Éxito
+            $mensaje_exito = "Producto agregado exitosamente";
+        } else {
+            // Error
+            $mensaje_error = "Error al agregar el producto: " . mysqli_error($conn);
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+
+    mysqli_close($conn);
 }
 
 // Función para obtener productos de la base de datos
 function obtenerProductos()
 {
-    // Aquí colocarías tu conexión a la base de datos
-    // Por ahora, devolvemos datos de ejemplo que coincidan con la imagen de referencia
-    return [
-        [
-            'id' => 1,
-            'nombre' => 'Bolsa de almacenamiento',
-            'descripcion' => 'Amazon Basics - Bolsa de almacenamiento de compresión al vacío, paquete de 15 (2...',
-            'precio' => 999,
-            'imagen' => 'bolsa.jpg'
-        ],
-        [
-            'id' => 2,
-            'nombre' => 'Soporte plegable para guitarra',
-            'descripcion' => 'Amazon Basics - Soporte plegable para guitarra eléctrica y acústica, en forma de A',
-            'precio' => 469,
-            'imagen' => 'soporte.jpg'
-        ],
-        [
-            'id' => 3,
-            'nombre' => 'Ventilador de pedestal',
-            'descripcion' => 'Amazon Basics - Ventilador de pedestal, doble hoja y control remoto, 40 cm, color...',
-            'precio' => 1799,
-            'imagen' => 'ventilador.jpg'
-        ]
-    ];
+    $conn = conectarDB();
+    $productos = array();
+
+    $query = "SELECT * FROM productos WHERE activo = 1 ORDER BY id DESC";
+    $resultado = mysqli_query($conn, $query);
+
+    if ($resultado) {
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            $productos[] = $fila;
+        }
+        mysqli_free_result($resultado);
+    }
+
+    mysqli_close($conn);
+    return $productos;
 }
 
 $productos = obtenerProductos();
@@ -70,6 +118,14 @@ $productos = obtenerProductos();
 
             <!-- Contenido principal con fondo blanco -->
             <div class="main-content-area">
+                <?php if (!empty($mensaje_exito)): ?>
+                    <div class="alert alert-success"><?php echo $mensaje_exito; ?></div>
+                <?php endif; ?>
+
+                <?php if (!empty($mensaje_error)): ?>
+                    <div class="alert alert-danger"><?php echo $mensaje_error; ?></div>
+                <?php endif; ?>
+
                 <h1 id="titulo-pagina" class="fade-in">AGREGAR PRODUCTOS</h1>
 
                 <div class="button-group fade-in">
