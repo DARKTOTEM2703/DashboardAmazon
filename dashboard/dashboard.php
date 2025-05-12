@@ -16,6 +16,7 @@ if (!isset($_SESSION['usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Amazon</title>
     <link rel="stylesheet" href="../css/pages/dashboard-styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
 </head>
 
 <body>
@@ -29,8 +30,8 @@ if (!isset($_SESSION['usuario'])) {
 
             <!-- Contenido principal con fondo blanco -->
             <div class="main-content-area">
-                <h1>Página de Inicio del Panel</h1>
-                <div class="image-container">
+                <h1 class="fade-in">Página de Inicio del Panel</h1>
+                <div class="image-container slide-in">
                     <img src="../reference/img/foto_principal.jpg" alt="Amazon Building">
                 </div>
             </div>
@@ -39,6 +40,9 @@ if (!isset($_SESSION['usuario'])) {
         <!-- Footer -->
         <?php include '../components/footer.php'; ?>
     </div>
+
+    <!-- Script para animaciones adicionales -->
+    <script src="../js/dashboard.js"></script>
 </body>
 
 </html>

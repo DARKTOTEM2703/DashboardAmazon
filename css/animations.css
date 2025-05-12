@@ -1,0 +1,145 @@
+/* Animaciones y transiciones para el Dashboard Amazon */
+
+/* Transiciones generales */
+.btn-agregar,
+.btn-ver,
+.btn-guardar,
+.btn-eliminar,
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+/* Animaciones para las secciones */
+#seccion-agregar,
+#seccion-ver {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.5s ease forwards;
+}
+
+/* Animación para la tabla */
+.productos-table tr {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Animación por filas con retardo */
+.productos-table tr:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.productos-table tr:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.productos-table tr:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.productos-table tr:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.productos-table tr:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+/* Efecto hover en filas de tabla */
+.productos-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.productos-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Animación para botones */
+.btn-guardar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-eliminar:hover span {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+/* Definición de keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de carga */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #ff9900;
+  animation: spin 0.8s ease infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
