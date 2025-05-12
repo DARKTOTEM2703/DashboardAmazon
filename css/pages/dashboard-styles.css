@@ -1,0 +1,59 @@
+/* Importar los componentes */
+@import "../components/header.css";
+@import "../components/sidebar.css";
+@import "../components/footer.css";
+
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+}
+
+.main-content-area {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: normal;
+}
+
+.image-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Eliminar clases que no se usan en la imagen de referencia */
+.main-content,
+.dashboard-image {
+  display: none;
+}

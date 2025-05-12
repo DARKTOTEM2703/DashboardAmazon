@@ -1,0 +1,58 @@
+/* Estilos de la barra lateral */
+.sidebar {
+  width: 260px;
+  background-color: #1c2b39;
+  color: #ffffff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.sidebar-nav ul li {
+  border-bottom: 1px solid #233343;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #233343;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.logout-container {
+  padding: 10px 15px;
+}
+
+.btn-logout {
+  display: block;
+  background-color: #ff0000;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+}
+
+.btn-logout:hover {
+  background-color: #cc0000;
+}

@@ -1,0 +1,8 @@
+/* Estilos del pie de página */
+.main-footer {
+  background-color: #ff9900;
+  height: 15px;
+  margin-top: 5rem;
+  padding: 5rem;
+  width: 100%;
+}
