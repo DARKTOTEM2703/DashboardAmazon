@@ -37,7 +37,7 @@ h1 {
   margin: 0;
   padding: 10px 0;
   text-align: center;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .image-container {
@@ -50,6 +50,7 @@ h1 {
   height: auto;
   display: block;
   margin: 0 auto;
+  border-radius: 10px;
 }
 
 /* Eliminar clases que no se usan en la imagen de referencia */
