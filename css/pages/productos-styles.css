@@ -1,0 +1,106 @@
+/* Estilos específicos para la página de productos */
+@import "../components/footer.css";
+@import "../components/header.css";
+@import "../components/sidebar.css";
+
+/* Ajustes al layout general para que coincida con la imagen */
+
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  padding: 50px;
+  display: flex;
+  flex: 1;
+}
+
+.main-content-area {
+  margin-left: 40px;
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Estilos para el grupo de botones */
+.button-group {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.btn-agregar {
+  background-color: #ff9900;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  min-width: 150px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.btn-ver {
+  background-color: #1c2b39;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  margin-left: 10px;
+  min-width: 150px;
+  text-align: center;
+  font-weight: normal;
+}
+
+/* Estilos para el formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  height: 35px;
+}
+
+/* Botón de guardar */
+.btn-guardar {
+  background-color: #1c2b39;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.btn-guardar:hover {
+  background-color: #233343;
+}

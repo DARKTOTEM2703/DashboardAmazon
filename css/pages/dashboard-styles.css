@@ -22,11 +22,14 @@ body {
 }
 
 .content-container {
+  padding: 50px;
   display: flex;
   flex: 1;
 }
 
 .main-content-area {
+  margin-left: 40px;
+  border-radius: 10px;
   flex: 1;
   background-color: #ffffff;
   padding: 20px;
